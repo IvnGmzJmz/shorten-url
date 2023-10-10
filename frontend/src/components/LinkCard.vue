@@ -68,9 +68,16 @@ export default {
             }
         },
         getFavIcon(url) {
-            let faviconUrl = new URL(url);
-            let domain = faviconUrl.hostname;
-            return faviconUrl.protocol+domain + '/favicon.ico';
+            try{
+              let faviconUrl = new URL(url);
+              let domain = faviconUrl.hostname;
+              return faviconUrl.protocol+domain + '/favicon.ico';
+            }catch (err){
+              console.error('Failed to load Favicon');
+              return require('@/assets/logo.png');
+
+            }
+ 
         }
     }
 }
