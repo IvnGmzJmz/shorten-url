@@ -46,10 +46,12 @@ COPY . /var/www
 COPY --chown=www:www . /var/www
 
 # Change current user to www
+RUN mkdir -p /var/www/vendor
+RUN chown -R www /var/www/vendor
+
 USER www
 
 RUN mkdir -p vendor
-
 RUN composer require laravel/passport
 
 # Expose port 9000 and start php-fpm server
