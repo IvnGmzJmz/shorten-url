@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 import App from './App.vue';
+import axios from 'axios';
 import BaseLayout from './components/layouts/BaseLayout.vue';
 import AuthorizedLayout from './components/layouts/AuthorizedLayout.vue';
 import LoginForm from './components/forms/LoginForm.vue';
@@ -19,6 +20,18 @@ import { faClipboard,faEdit,faTrashCan,faBarChart,faCalendar } from '@fortawesom
 /* add icons to the library */
 library.add(faClipboard,faEdit,faTrashCan,faBarChart,faCalendar)
 
+const guard = function (to, from, next) {
+  axios.get('http://localhost:81/api/user',{
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("auth_token")}`, 
+    }
+  }).then(() => {
+    next()
+  }).catch(() => {
+    next('/login')
+  });
+}
+
 const routes = [
   {
     path: '/',
@@ -31,11 +44,7 @@ const routes = [
           layout: 'default'
         },
         beforeEnter: (to,from,next) => {
-          const isAuthUser = localStorage.getItem('auth_token') !== null;
-                    
-          if (isAuthUser){next();}
-
-          next('/login');
+          guard(to,from,next);
         }
       },
     ]
