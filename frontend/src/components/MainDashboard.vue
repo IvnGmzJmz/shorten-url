@@ -54,9 +54,6 @@ export default {
       this.$refs.createModal.openModal(); // Trigger the modal from the parent component
     },
 
-    handleLinkEdited() {
-      this.fetchLinks();
-    },
     fetchLinks(page = 1) {
       axios.get(`http://localhost:81/api/links?page=${page}`,{
         headers: {

@@ -45,6 +45,9 @@ export default {
         }
     },
     methods: {
+        handleLinkEdited() {                
+          this.$emit("fetch-links", this.link);
+        },
         openEditModal(item) {
             this.itemToEdit = item;
             this.$refs.editModal.openModal();

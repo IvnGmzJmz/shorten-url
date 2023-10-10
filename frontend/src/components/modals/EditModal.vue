@@ -5,10 +5,10 @@
         <form @submit.prevent="editItem" class="edit-form">
           <h2 class="modal-title">Edit Item</h2>
           <div class="form-group">
-            <input v-model="currentItem.title" type="text" id="title" placeholder="Title" />
+            <input v-model="currentItem.title" type="text" id="title" placeholder="Title" required />
           </div>
           <div class="form-group">
-            <input v-model="currentItem.url" type="text" id="url" placeholder="URL" />
+            <input v-model="currentItem.url" type="text" id="url" placeholder="URL" required/>
           </div>
           <div class="form-group">
             <input v-model="currentItem.short_url" type="text" id="short_url" placeholder="Alias" />

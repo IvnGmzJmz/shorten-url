@@ -11,10 +11,10 @@
         <form @submit.prevent="createItem" class="create-form">
           <h2 class="modal-title">Create Item</h2>
           <div class="form-group">
-            <input v-model="newItem.title" type="text" id="title" placeholder="Title" />
+            <input v-model="newItem.title" type="text" id="title" placeholder="Title" required/>
           </div>
           <div class="form-group">
-            <input v-model="newItem.url" type="text" id="url" placeholder="URL" />
+            <input v-model="newItem.url" type="text" id="url" placeholder="URL" required/>
           </div>
           <div class="form-group">
             <input v-model="newItem.short_url" type="text" id="short_url" placeholder="Alias" />
@@ -65,7 +65,6 @@ export default {
       });
     },
     clearModal() {
-      console.log('estoy aqui e');
       this.newItem.title = '';
       this.newItem.url = '';
       this.newItem.short_url = '';
